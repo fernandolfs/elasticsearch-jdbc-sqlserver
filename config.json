@@ -1,0 +1,31 @@
+{
+  "type": "jdbc",
+  "jdbc": {
+    "driver":"com.microsoft.sqlserver.jdbc.SQLServerDriver",
+    "url":"jdbc:sqlserver://10.10.0.12:1433;databaseName=MARKETPLACE_OPERACIONAL",
+    "user":"processos","password":"dr1301prc",
+    "sql":"select * from cor_usuario",
+    "poll":"30s",
+    "index_settings": {
+      "index": {
+        "number_of_shards": 10
+      }
+    },
+    "index": "test",
+    "type": "sqlserver",
+    "elasticsearch": {
+      "cluster": "test",
+      "host": "{{ .Env.ELASTICSEARCH_PORT_9300_TCP_ADDR }}",
+      "port": "9300"
+    },
+    "statefile": "/statefile.json",
+    "metrics": {
+      "enabled": true,
+      "interval": "1m",
+      "logger": {
+        "plain": false,
+        "json": true
+      }
+    }
+  }
+}
